@@ -85,4 +85,16 @@ public class UserService {
                 user.getEmail()
         );
     }
+
+    @Transactional
+    public void deleteOne(Long userId, String password) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new EntityNotFoundException("해당 id의 유저를 찾을 수 없습니다.")
+        );
+
+        if (!ObjectUtils.nullSafeEquals(user.getPassword(), password)) {
+            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
+        }
+        userRepository.deleteById(userId);
+    }
 }

@@ -45,4 +45,13 @@ public class UserController {
     ) {
         return ResponseEntity.ok(userService.updateUser(userId, request));
     }
+
+    // 선택 유저 삭제
+    @DeleteMapping("/users/{userId}")
+    public void deleteUser(
+            @PathVariable Long userId,
+            @RequestParam String password
+    ) {
+        userService.deleteOne(userId, password);
+    }
 }
