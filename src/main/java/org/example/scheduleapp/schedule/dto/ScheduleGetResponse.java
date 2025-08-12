@@ -1,7 +1,10 @@
 package org.example.scheduleapp.schedule.dto;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
+@Getter
 public class ScheduleGetResponse {
 
     private final Long id;
