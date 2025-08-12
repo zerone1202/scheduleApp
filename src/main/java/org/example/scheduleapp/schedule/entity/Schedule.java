@@ -1,11 +1,9 @@
 package org.example.scheduleapp.schedule.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.example.scheduleapp.user.entity.User;
 
 @Entity
 @Getter
@@ -16,23 +14,27 @@ public class Schedule extends BaseEntity {
     private Long id;
     private String title;
     private String content;
-    private String author;
+//    private String author; -> 작성 유저명 제거
     private String password;
+
+    // 유저와의 연관관계
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false) // 외래키
+    private User user;
 
     public Schedule(
             String title,
             String content,
-            String author,
-            String password
+            String password,
+            User user
     ) {
         this.title = title;
         this.content = content;
-        this.author = author;
         this.password = password;
+        this.user = user;
     }
 
-    public void updateTitleAuthor(String title, String author) {
+    public void updateTitle(String title) {
         this.title = title;
-        this.author = author;
     }
 }

@@ -10,15 +10,15 @@ public class ScheduleGetAllResponse {
     private final Long id;
     private final String title;
     private final String content;
-    private final String author;
+    private final String username;
     private final LocalDateTime createAt;
     private final LocalDateTime modifiedAt;
 
-    public ScheduleGetAllResponse(Long id, String title, String content, String author, LocalDateTime createAt, LocalDateTime modifiedAt) {
+    public ScheduleGetAllResponse(Long id, String title, String content, String username, LocalDateTime createAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.author = author;
+        this.username = username;
         this.createAt = createAt;
         this.modifiedAt = modifiedAt;
     }

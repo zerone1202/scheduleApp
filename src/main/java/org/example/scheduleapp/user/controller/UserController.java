@@ -2,7 +2,6 @@ package org.example.scheduleapp.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.scheduleapp.user.dto.*;
-import org.example.scheduleapp.user.entity.User;
 import org.example.scheduleapp.user.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
