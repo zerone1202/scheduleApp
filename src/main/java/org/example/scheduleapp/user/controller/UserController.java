@@ -2,6 +2,7 @@ package org.example.scheduleapp.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.scheduleapp.user.dto.UserGetAllResponse;
+import org.example.scheduleapp.user.dto.UserGetResponse;
 import org.example.scheduleapp.user.dto.UserSaveRequest;
 import org.example.scheduleapp.user.dto.UserSaveResponse;
 import org.example.scheduleapp.user.entity.User;
@@ -29,5 +30,13 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<List<UserGetAllResponse>> getAllUsers() {
         return ResponseEntity.ok(userService.findAll());
+    }
+
+    // 선택 유저 조회
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<UserGetResponse> getOneUser(
+            @PathVariable Long userId
+    ) {
+        return  ResponseEntity.ok(userService.findOne(userId));
     }
 }

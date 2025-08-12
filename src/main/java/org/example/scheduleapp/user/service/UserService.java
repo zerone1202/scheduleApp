@@ -1,5 +1,7 @@
 package org.example.scheduleapp.user.service;
 
+import jakarta.persistence.EntityNotFoundException;
+import org.example.scheduleapp.user.dto.UserGetResponse;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.scheduleapp.user.dto.UserGetAllResponse;
@@ -49,5 +51,19 @@ public class UserService {
             ));
         }
         return userGetAllResponses;
+    }
+
+    @Transactional(readOnly = true)
+    public UserGetResponse findOne(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new EntityNotFoundException("해당 id의 유저를 찾을 수 없습니다.")
+        );
+        return new UserGetResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getModifiedAt()
+        );
     }
 }
