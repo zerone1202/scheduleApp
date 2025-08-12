@@ -1,15 +1,13 @@
 package org.example.scheduleapp.user.service;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.example.scheduleapp.user.dto.UserGetResponse;
+import org.example.scheduleapp.user.dto.*;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.example.scheduleapp.user.dto.UserGetAllResponse;
-import org.example.scheduleapp.user.dto.UserSaveRequest;
-import org.example.scheduleapp.user.dto.UserSaveResponse;
 import org.example.scheduleapp.user.entity.User;
 import org.example.scheduleapp.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +62,27 @@ public class UserService {
                 user.getEmail(),
                 user.getCreatedAt(),
                 user.getModifiedAt()
+        );
+    }
+
+    @Transactional
+    public UserUpdateResponse updateUser(Long userId, UserUpdateRequest request) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new EntityNotFoundException("해당 id의 유저를 찾을 수 없습니다.")
+        );
+
+        if (!ObjectUtils.nullSafeEquals(user.getPassword(), request.getUsername())) {
+            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // 더티체킹
+        user.updateUsernameEmail(
+                request.getUsername(),
+                request.getEmail()
+        );
+        return new UserUpdateResponse(
+                user.getUsername(),
+                user.getEmail()
         );
     }
 }

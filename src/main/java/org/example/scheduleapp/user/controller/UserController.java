@@ -1,10 +1,7 @@
 package org.example.scheduleapp.user.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.scheduleapp.user.dto.UserGetAllResponse;
-import org.example.scheduleapp.user.dto.UserGetResponse;
-import org.example.scheduleapp.user.dto.UserSaveRequest;
-import org.example.scheduleapp.user.dto.UserSaveResponse;
+import org.example.scheduleapp.user.dto.*;
 import org.example.scheduleapp.user.entity.User;
 import org.example.scheduleapp.user.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +35,14 @@ public class UserController {
             @PathVariable Long userId
     ) {
         return  ResponseEntity.ok(userService.findOne(userId));
+    }
+
+    // 선택 유저 수정
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<UserUpdateResponse> updateUser(
+            @PathVariable Long userId,
+            @RequestBody UserUpdateRequest request
+    ) {
+        return ResponseEntity.ok(userService.updateUser(userId, request));
     }
 }
