@@ -15,8 +15,8 @@ public class ScheduleController {
 
     private final ScheduleService scheduleService;
 
-    // 일정 생성
-    @PostMapping("/schedules")
+    // 유저 일정 생성
+    @PostMapping("schedules")
     public ResponseEntity<ScheduleSaveResponse> saveSchedule(
             @RequestBody ScheduleSaveRequest request, User user
     ) {

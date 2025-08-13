@@ -97,4 +97,9 @@ public class UserService {
         }
         userRepository.deleteById(userId);
     }
+
+    @Transactional
+    public void signup() {
+        User save = userRepository.save(new User());
+    }
 }
