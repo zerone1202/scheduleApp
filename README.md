@@ -1,5 +1,5 @@
 # ERD
-![schedule-user ERD](https://github.com/user-attachments/assets/yd8PShZXnS8q1b1XNwNEE.jpeg)
+<img width="810" height="379" alt="ScheduleApp_ERD" src="https://github.com/user-attachments/assets/7ba917f7-92ce-4847-adeb-7b7f81e02254" />
 
 #
 
