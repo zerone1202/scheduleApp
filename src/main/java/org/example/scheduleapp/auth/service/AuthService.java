@@ -32,11 +32,9 @@ public class AuthService {
     @Transactional(readOnly = true)
     public AuthResponse login(AuthRequest request) {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
-//                () -> new IllegalArgumentException("존재하지 않는 이메일입니다."));
                 () -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "존재하지 않는 이메일입니다."));
         if (!user.getPassword().equals(request.getPassword())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
-//            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
         }
         return new AuthResponse(user.getId());
     }

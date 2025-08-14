@@ -10,11 +10,11 @@ import org.example.scheduleapp.user.entity.User;
 @NoArgsConstructor
 public class Schedule extends BaseEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String content;
-//    private String author; -> 작성 유저명 제거
     private String password;
 
     // 유저와의 연관관계

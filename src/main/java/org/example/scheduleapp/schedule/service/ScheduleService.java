@@ -31,7 +31,7 @@ public class ScheduleService {
                 request.getContent(),
                 request.getPassword(),
                 createUser
-                );
+        );
         Schedule savedSchedule = scheduleRepository.save(schedule);
         return new ScheduleSaveResponse(
                 savedSchedule.getId(),

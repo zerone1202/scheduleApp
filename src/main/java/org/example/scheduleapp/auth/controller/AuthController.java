@@ -38,4 +38,14 @@ public class AuthController {
         httpSession.setAttribute("LOGIN_USER", result.getUserId()); // Session 저장
         return "유저 로그인에 성공했습니다.";
     }
+
+    // 로그아웃
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 제거
+        }
+        return "유저 로그아웃에 성공했습니다.";
+    }
 }

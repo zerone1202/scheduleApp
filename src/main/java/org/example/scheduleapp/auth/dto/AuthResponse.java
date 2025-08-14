@@ -7,7 +7,7 @@ public class AuthResponse {
 
     private final Long userId;
 
-    public  AuthResponse(Long userId) {
+    public AuthResponse(Long userId) {
         this.userId = userId;
     }
 }

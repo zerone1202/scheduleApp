@@ -1,6 +1,7 @@
 package org.example.scheduleapp.user.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.scheduleapp.schedule.dto.ScheduleGetAllResponse;
 import org.example.scheduleapp.user.dto.*;
 import org.example.scheduleapp.user.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class UserController {
     public ResponseEntity<UserGetResponse> getOneUser(
             @PathVariable Long userId
     ) {
-        return  ResponseEntity.ok(userService.findOne(userId));
+        return ResponseEntity.ok(userService.findOne(userId));
     }
 
     // 선택 유저 수정
@@ -53,4 +54,5 @@ public class UserController {
     ) {
         userService.deleteOne(userId, password);
     }
+
 }

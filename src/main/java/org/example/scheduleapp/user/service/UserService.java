@@ -1,6 +1,7 @@
 package org.example.scheduleapp.user.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.example.scheduleapp.schedule.dto.ScheduleGetAllResponse;
 import org.example.scheduleapp.user.dto.*;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -96,10 +97,5 @@ public class UserService {
             throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
         }
         userRepository.deleteById(userId);
-    }
-
-    @Transactional
-    public void signup() {
-        User save = userRepository.save(new User());
     }
 }
